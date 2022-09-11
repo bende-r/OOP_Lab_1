@@ -25,14 +25,21 @@ namespace ClassLibrary1
             if (!DoesExist()) throw new Exception("Cannot create the trapezoid with initial values");
         }
 
-        public float GetPerimeter()
+        public double GetPerimeter()
         {
-            return (float)Math.Abs(X1 - X2) + ((float)Math.Cos(X1) + (float)Math.Cos(X2)) + ((float)Math.Sqrt(2) * (float)Math.Sqrt((float)Math.Pow((2 * (float)Math.Sin((X2 + (float)Math.PI / 2) / 2) + ((float)Math.PI * (X2 + (float)Math.PI / 2) / 180 - 2 * (float)Math.Sin((X2 + (float)Math.PI / 2) / 2))) * ((float)Math.Sqrt(2) / 2), 2) - (float)Math.Pow((float)Math.Sin(X2 + (float)Math.PI / 2), 2) * (1 - ((float)Math.Sqrt(2) / 2) * ((float)Math.Sqrt(2) / 2))))  /**/- ((float)Math.Sqrt(2) * (float)Math.Sqrt((float)Math.Pow((2 * (float)Math.Sin((X1 + (float)Math.PI / 2) / 2) + ((float)Math.PI * (X1 + (float)Math.PI / 2) / 180 - 2 * (float)Math.Sin((X1 + (float)Math.PI / 2) / 2))) * ((float)Math.Sqrt(2) / 2), 2) - (float)Math.Pow((float)Math.Sin(X1 + (float)Math.PI / 2), 2) * (1 - ((float)Math.Sqrt(2) / 2) * ((float)Math.Sqrt(2) / 2))));
+           double k = Math.Sqrt(2) / 2;
+            double ed1 = Math.Sin(X1) * Math.Sin(X1) * (1 - k * k);
+            double ed2 = Math.Sin(X2) * Math.Sin(X2) * (1 - k * k);
+            double e1 = Math.Sqrt((2 * Math.Sin(X1 / 2) + (Math.PI * X1 / 180 - 2 * Math.Sin(X1 / 2)) * k) * (2 * Math.Sin(X1 / 2) + (Math.PI * X1 / 180 - 2 * Math.Sin(X1 / 2)) * k));
+            double e2 = Math.Sqrt((2 * Math.Sin(X2 / 2) + (Math.PI * X2 / 180 - 2 * Math.Sin(X2 / 2)) * k) * (2 * Math.Sin(X2 / 2) + (Math.PI * X2 / 180 - 2 * Math.Sin(X2 / 2)) * k));
+            double l = Math.Sqrt(2) * (e2 - ed2) - Math.Sqrt(2) * (e1 - ed1) + Math.Abs(X1 - X2) + (Math.Cos(X1) + Math.Cos(X2));
+
+            return Math.Abs(l);
         }
 
         public double GetArea()
         {
-            return -(float)Math.Sin(X1) + (float)Math.Sin(X2);
+            return Math.Abs(Math.Sin(X2) - Math.Sin(X1));
         }
 
         public Belonging DoesPointBelong(double x, double y)
@@ -47,7 +54,6 @@ namespace ClassLibrary1
             if (Math.Abs(X1-X2)>0) return true;
             return false;
         }
+       
     }
 }
-
-//Math.Abs(X1 - X2) + (Math.Cos(X1) + Math.Cos(X2)) + (Math.Sqrt(2) * Math.Sqrt(Math.Pow((2 * Math.Sin((X2 + Math.PI / 2) / 2) + (Math.PI * (X2 + Math.PI / 2) / 180 - 2 * Math.Sin((X2 + Math.PI / 2) / 2))) * (Math.Sqrt(2) / 2), 2) - Math.Pow(Math.Sin(X2 + Math.PI / 2), 2) * (1 - (Math.Sqrt(2) / 2) * (Math.Sqrt(2) / 2))))  /**/- (Math.Sqrt(2) * Math.Sqrt(Math.Pow((2 * Math.Sin((X1 + Math.PI / 2) / 2) + (Math.PI * (X1 + Math.PI / 2) / 180 - 2 * Math.Sin((X1 + Math.PI / 2) / 2))) * (Math.Sqrt(2) / 2), 2) - Math.Pow(Math.Sin(X1 + Math.PI / 2), 2) * (1 - (Math.Sqrt(2) / 2) * (Math.Sqrt(2) / 2))));
