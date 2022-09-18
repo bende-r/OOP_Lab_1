@@ -5,6 +5,10 @@ namespace Lab_1
 {
     internal class Program
     {
+        /// <summary>
+        /// Создания трапеции по координатам.
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             double X1,X2;
@@ -18,7 +22,6 @@ namespace Lab_1
 
                 Trapezoid trapezoid = new Trapezoid(X1, X2);
 
-            
                 Console.WriteLine("P = " + trapezoid.GetPerimeter());
                 Console.WriteLine("S = " + trapezoid.GetArea());
                 Console.WriteLine("Point(0, 1) is " + trapezoid.DoesPointBelong(0, 1));
